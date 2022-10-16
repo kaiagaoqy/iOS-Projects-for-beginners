@@ -1,5 +1,3 @@
-![App Brewery Banner](Documentation/AppBreweryBanner.png)
-
 # Egg Timer
 
 ## Our Goal
@@ -20,8 +18,4 @@ You’ll be building a beautiful egg timer app to boil your eggs to perfection d
 * How to use the ProgressView
 
 
-
->This is a companion project to The App Brewery's Complete App Development Bootcamp, check out the full course at [www.appbrewery.co](https://www.appbrewery.co/)
-
-![End Banner](Documentation/readme-end-banner.png)
-
+> How to delete uncompliant connection : https://becodable.com/this-class-is-not-key-value-coding-compliant-for-the-key/
