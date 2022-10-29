@@ -10,8 +10,7 @@ import UIKit
 
 class TodoListViewController: UITableViewController {
     // Mark -- hard-coded items
-    //var itemArray = ["Buy Milk", "hand in proposal", "develop an app"]
-    var itemArray = [Item]() // an array stroes Item objects
+    var itemArray = ["Buy Milk", "hand in proposal", "develop an app"]
     let defaults = UserDefaults.standard// link to the user's default database save data to .plist file in a format "Key-Type-Value"
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,13 +21,11 @@ class TodoListViewController: UITableViewController {
          as!: Mandatory Downcasting(强制类型转换), trigger "runtime" error if fail to converse data type
          as?: same as "as!", but return nil if fail. optional object if succeed
          */
-//        if let items = defaults.array(forKey: "TodoListArray") as? [String]{
-//            itemArray = items
-//        }
+       if let items = defaults.array(forKey: "TodoListArray") as? [String]{
+           itemArray = items
+       }
         
-        let newItem = Item()
-        newItem.title = "Buy Milk"
-        itemArray.append(newItem)
+        
     }
     
     // Mark -- Table View Data Source Method
@@ -41,20 +38,8 @@ class TodoListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Create a resuable cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
-//        cell.textLabel?.text = itemArray[indexPath.row] // row value of current cell
-        
-        let item = itemArray[indexPath.row]
-        cell.textLabel?.text = item.title
-        
-        // Mark -- Terbary Operator
-        // value = condition ? valueIfTrue : valueIfFalse
-        
-        cell.accessoryType = item.done ? .checkmark : .none
-//        if item.done {
-//            cell.accessoryType = .checkmark
-//        }else{
-//            cell.accessoryType = .none
-//        }
+       cell.textLabel?.text = itemArray[indexPath.row] // row value of current cell
+
         return cell
     }
     
@@ -63,15 +48,14 @@ class TodoListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // print(indexPath.row) // 0, 1, 2
         
-        itemArray[indexPath.row].done = !itemArray[indexPath.row].done
         
-//        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark // return the table cell at specified indexPath, then set its accessoryType as checked
-//        {tableView.cellForRow(at: indexPath)?.accessoryType = .none}
-//        else{
-//            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-//        }
         
-        tableView.reloadData() // reload datasouce to update its "done" property
+       if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark // return the table cell at specified indexPath, then set its accessoryType as checked
+       {tableView.cellForRow(at: indexPath)?.accessoryType = .none}
+       else{
+           tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+       }
+        
         
         tableView.deselectRow(at: indexPath, animated: true) // select then deselect
         
@@ -91,10 +75,8 @@ class TodoListViewController: UITableViewController {
             // closure: What will happen once the user clicks the Add Item on our UIAlert
             //print(textField.text)
             
-            // Append the item into itemArray
-            let newItem = Item()
-            newItem.title = textField.text!
-            self.itemArray.append(newItem) // specify it as TodoListViewController.itemArray
+            // Append the item into itemArray          
+            self.itemArray.append(textField.text!) // specify it as TodoListViewController.itemArray
             
             self.defaults.set(self.itemArray, forKey: "TodoListArray") // save key-value pair to user default database
             
