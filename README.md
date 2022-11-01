@@ -1,4 +1,4 @@
-# iOS-Projects
+# iOS-Projects for beginners
 
 HI, this is Kaia and here it is my study note for iOS development.
 
