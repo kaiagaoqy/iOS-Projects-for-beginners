@@ -1,8 +1,8 @@
 # iOS-Projects
 
-HI, this is an open-souce study note for iOS development.
+HI, this is Kaia and here it is my study note for iOS development.
 
-
+Check the detailed Notes below:
 <table>
   <tr>
     <th> Project Name</th><th>Objective</th>
