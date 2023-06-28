@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // VC is a delegate to MTKView
-        //        metalView.delegate = self
+        metalView.delegate = self
         
         // Only one device and command queue per application
         metalView.device = MTLCreateSystemDefaultDevice()
@@ -36,9 +36,21 @@ class ViewController: UIViewController {
         
         // Configure the renderer to draw to the view
         renderer = Renderer(device: device)
-        renderer.draw(in: metalView)
         
         
     }
     
+}
+
+// MARK: - MTKViewDelegate
+extension ViewController: MTKViewDelegate {
+    // Called whenever view changes orientation or layout is changed
+    func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
+//        renderer.drawRectResized(size: size)
+    }
+    
+    // Called whenever the view needs to render
+    func draw(in view: MTKView) {
+        renderer.draw(in: view)
+    }
 }

@@ -14,7 +14,8 @@
 		C904886F2A49D4A5000ED9B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C904886E2A49D4A5000ED9B7 /* Assets.xcassets */; };
 		C90488722A49D4A5000ED9B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C90488702A49D4A5000ED9B7 /* LaunchScreen.storyboard */; };
 		C9A1DAA02A4A9518006F0FC8 /* Shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = C9A1DA9F2A4A9518006F0FC8 /* Shader.metal */; };
-		C9A1DAA22A4B6442006F0FC8 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A1DAA12A4B6442006F0FC8 /* Renderer.swift */; };
+		C9A1DAA22A4B6442006F0FC8 /* RendererTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A1DAA12A4B6442006F0FC8 /* RendererTriangle.swift */; };
+		C9BE43F32A4B8919000B1784 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BE43F22A4B8918000B1784 /* Renderer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +28,8 @@
 		C90488712A49D4A5000ED9B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C90488732A49D4A5000ED9B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9A1DA9F2A4A9518006F0FC8 /* Shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shader.metal; sourceTree = "<group>"; };
-		C9A1DAA12A4B6442006F0FC8 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		C9A1DAA12A4B6442006F0FC8 /* RendererTriangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RendererTriangle.swift; sourceTree = "<group>"; };
+		C9BE43F22A4B8918000B1784 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +62,8 @@
 		C90488642A49D4A1000ED9B7 /* raybreak */ = {
 			isa = PBXGroup;
 			children = (
-				C9A1DAA12A4B6442006F0FC8 /* Renderer.swift */,
+				C9BE43F22A4B8918000B1784 /* Renderer.swift */,
+				C9A1DAA12A4B6442006F0FC8 /* RendererTriangle.swift */,
 				C9A1DA9F2A4A9518006F0FC8 /* Shader.metal */,
 				C90488652A49D4A1000ED9B7 /* AppDelegate.swift */,
 				C90488672A49D4A1000ED9B7 /* SceneDelegate.swift */,
@@ -147,7 +150,8 @@
 				C9A1DAA02A4A9518006F0FC8 /* Shader.metal in Sources */,
 				C904886A2A49D4A1000ED9B7 /* ViewController.swift in Sources */,
 				C90488662A49D4A1000ED9B7 /* AppDelegate.swift in Sources */,
-				C9A1DAA22A4B6442006F0FC8 /* Renderer.swift in Sources */,
+				C9A1DAA22A4B6442006F0FC8 /* RendererTriangle.swift in Sources */,
+				C9BE43F32A4B8919000B1784 /* Renderer.swift in Sources */,
 				C90488682A49D4A1000ED9B7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
