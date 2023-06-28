@@ -26,11 +26,16 @@ class Renderer:NSObject{
     }
     
     //MARK: Properties
-    var vertices:[Float] = [ // With index drawing, we need only unique vertices
-        -1,1,0, // v0
-        -1,-1,0, // v1
-         1,-1,0, // v2
-         1,1,0, //v3
+    // With index drawing, we need only unique vertices
+    var vertices:[Vertex] = [ //Here we use customized type to store features of vertex
+        Vertex(position: SIMD3(-1,1,0), // v0
+               color: SIMD4(1,0,0,1)),
+        Vertex(position: SIMD3(-1,-1,0), // v1
+               color: SIMD4(0,1,0,1)),
+        Vertex(position: SIMD3(1,-1,0), // v2
+               color: SIMD4(0,0,1,1)),
+        Vertex(position: SIMD3(1,1,0), // v3
+               color: SIMD4(1,0,1,1))
     ]
     
     var indices:[UInt16] = [
@@ -48,13 +53,14 @@ class Renderer:NSObject{
     //MARK: Initialize Buffers
     private func buildModel(){
         vertexBuffer = device.makeBuffer(bytes: vertices,
-                                         length: vertices.count * MemoryLayout<Float>.size, // each entry is float
+                                         length: vertices.count * MemoryLayout<Vertex>.size, // each entry is float
                                          options: [])
         indexBuffer = device.makeBuffer(bytes:indices,
                                         length:indices.count * MemoryLayout<UInt16>.size,
                                         options: [])
     }
     
+    //MARK: PipelineState to tell GPU use which shader functions
     private func buildPipeLineState() {
         let library = device.makeDefaultLibrary() // All shader functions will be stored in a library
         let vertexFunction = library?.makeFunction(name: "vertex_shader")
@@ -66,6 +72,24 @@ class Renderer:NSObject{
         pipelineDescriptor.fragmentFunction = fragmentFunction
         pipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
         
+        //MARK: Vertex Descriptor to allign data structure in metal and GPU
+        let vertexDescriptor = MTLVertexDescriptor()
+        
+        // [...[position,color],...]
+        // Position
+        vertexDescriptor.attributes[0].format = .float3
+        vertexDescriptor.attributes[0].offset = 0
+        vertexDescriptor.attributes[0].bufferIndex = 0 //both start from 0
+        // Color
+        vertexDescriptor.attributes[1].format = .float4
+        vertexDescriptor.attributes[1].offset = MemoryLayout<SIMD3<Float>>.stride // after the position
+        vertexDescriptor.attributes[1].bufferIndex = 0
+        
+        vertexDescriptor.layouts[0].stride = MemoryLayout<Vertex>.stride
+        
+        pipelineDescriptor.vertexDescriptor = vertexDescriptor // Assign to pipelinedescriptor
+        
+        // Create PipelineState from Pipeline Descriptor
         do {
             pipelineState = try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
         } catch let error as NSError {
